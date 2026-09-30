@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Campus Help Desk</title>
+</head>
+<body>
+    <h1>Campus Help Desk</h1>
+    <form id="requestForm">
+        <input type="hidden" id="reqId">
+        <label>Student Name: <input type="text" id="name" required></label><br><br>
+        <label>Email: <input type="email" id="email" required></label><br><br>
+        <label>Category: <input type="text" id="category" required></label><br><br>
+        <label>Problem Description: <textarea id="description" required></textarea></label><br><br>
+        <label>Priority: 
+            <select id="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </label><br><br>
+        <button type="submit">Submit</button>
+        <button type="button" id="clearBtn">Clear</button>
+    </form>
+    
+    <h2>Submitted Requests</h2>
+    <div id="requestsList"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -6,9 +6,9 @@ export const Footer = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/v1/portfolio')
+    fetch('/data/portfolio.json')
       .then(res => res.json())
-      .then(result => setData(result.data))
+      .then(result => setData(result))
       .catch(console.error);
   }, []);
 

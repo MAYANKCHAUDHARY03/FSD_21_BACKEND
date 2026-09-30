@@ -14,10 +14,10 @@ export const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/v1/portfolio');
+        const response = await fetch('/data/portfolio.json');
         if (response.ok) {
           const result = await response.json();
-          setPortfolioData(result.data);
+          setPortfolioData(result);
         }
       } catch (err) {
         console.error(err);

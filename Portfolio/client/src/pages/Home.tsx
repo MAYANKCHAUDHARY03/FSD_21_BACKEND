@@ -15,19 +15,20 @@ export const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Using the API endpoint as specified
-        const response = await fetch('http://localhost:3001/api/v1/portfolio');
+        // Using static JSON data for Firebase Hosting
+        const response = await fetch('/data/portfolio.json');
         if (!response.ok) {
           throw new Error('Failed to fetch portfolio data');
         }
         const result = await response.json();
-        setPortfolioData(result.data);
+        setPortfolioData(result);
       } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
+
 
     fetchData();
   }, []);

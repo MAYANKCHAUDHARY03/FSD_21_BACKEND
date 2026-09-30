@@ -19,21 +19,13 @@ export const Contact = ({ data }: ContactProps) => {
     setStatus('loading');
     
     try {
-      const response = await fetch('http://localhost:3001/api/v1/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      // Open email client with pre-filled message since there's no backend
+      const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+      window.open(`mailto:${data.email}?subject=${subject}&body=${body}`, '_self');
       
-      const result = await response.json();
-      
-      if (response.ok && result.success) {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        setStatus('error');
-        setErrorMessage(result.message || 'Something went wrong');
-      }
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
     } catch {
       setStatus('error');
       setErrorMessage('Failed to send message. Please try again later.');

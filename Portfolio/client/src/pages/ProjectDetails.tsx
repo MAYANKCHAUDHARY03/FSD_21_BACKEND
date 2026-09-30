@@ -15,12 +15,16 @@ export const ProjectDetails = () => {
     
     const fetchProject = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/v1/projects/${slug}`);
+        const response = await fetch('/data/portfolio.json');
         if (!response.ok) {
           throw new Error('Project not found');
         }
         const result = await response.json();
-        setProject(result.data);
+        const found = result.projects.find((p: any) => p.slug === slug);
+        if (!found) {
+          throw new Error('Project not found');
+        }
+        setProject(found);
       } catch (err: any) {
         setError(err.message);
       } finally {
